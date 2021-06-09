@@ -1,12 +1,11 @@
-import {SET_POSTS, TOGGLE_IS_CHECKED} from "../actions/actions";
+import {SET_POSTS, TOGGLE_IS_CHECKED} from "../actions/postsActions";
 
 const defaultState = {
     posts: [],
     isAuth: true,
 }
 
-const reducer = (state = defaultState, action) => {
-    // console.log('action', action);
+const postsReducer = (state = defaultState, action) => {
     switch (action.type) {
         case SET_POSTS:
             return {
@@ -28,4 +27,4 @@ const reducer = (state = defaultState, action) => {
     }
 };
 
-export default reducer;
+export default postsReducer;
