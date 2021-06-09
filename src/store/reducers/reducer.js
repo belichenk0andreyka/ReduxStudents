@@ -1,7 +1,8 @@
-import { SET_POSTS } from "../actions/actions";
+import {SET_POSTS, TOGGLE_IS_CHECKED} from "../actions/actions";
 
 const defaultState = {
-    posts: [{title: 'title1'}, {title: 'title3'}, {title: 'title3'}],
+    posts: [],
+    isAuth: true,
 }
 
 const reducer = (state = defaultState, action) => {
@@ -10,7 +11,17 @@ const reducer = (state = defaultState, action) => {
         case SET_POSTS:
             return {
                 ...state,
-                posts: action.payload,
+                posts: action.payload.map(post => ({ ...post, isChecked: false })), // action.payload - массив постов
+            }
+        case 'TOGGLE_ID_AUTH':
+            return {
+                ...state,
+                isAuth: !state.isAuth,
+            }
+        case TOGGLE_IS_CHECKED:
+            return {
+                ...state,
+                posts: state.posts.map(post => post.id === action.payload ? ({ ...post, isChecked: !post.isChecked}) : post),
             }
         default:
             return state;
